@@ -9,9 +9,12 @@ import { getBurguers } from "../services/burguerService";
 //Interface Typescript para tipagem
 import { BurguerData } from "../types/BurguerData";
 
+import { useCartStore } from "@/features/cart/store/useCartStore";
+
 export default function CardSnack() {
     const [burguers, setBurguers] = useState<BurguerData[]>([])
     const [loading, setLoading] = useState(true)
+    const addToCart = useCartStore((state) => state.addToCart)
 
     useEffect(() => {
         async function loadData() {
@@ -68,6 +71,7 @@ export default function CardSnack() {
                             : "bg-gray-200 text-gray-500 cursor-not-allowed"
                         }`}
                         disabled={!burguer.available}
+                        onClick={() => addToCart(burguer)}
                     >
                         {burguer.available ? "Adicionar ao carrinho" : "Indisponível"}
                     </button>
