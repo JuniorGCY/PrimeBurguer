@@ -6,7 +6,7 @@ import { LogoutService } from "@/features/auth/services/LogoutService"
 import { useCartStore } from "@/features/cart/store/useCartStore"
 
 //icons
-import { ShoppingCart, User, LogOut } from "lucide-react"
+import { ShoppingCart, User, LogOut, CircleUser} from "lucide-react"
 
 //Card para mostrar os hamburgueres
 import CardSnack from "@/features/home/Components/CardSnack"
@@ -40,6 +40,10 @@ export default function Home() {
                 </div>
 
                 <div className="flex flex-row gap-6">
+                    <button onClick={() => router.push('/profile')}>
+                        <CircleUser size={24} className="text-red-600"/>
+                    </button>
+
                     <button className=" hover:bg-gray-100 rounded-full transition-colors group" onClick={() => router.push("/cart")}>
                         <ShoppingCart size={24} className="text-red-600"/>
                         {total > 0 && (

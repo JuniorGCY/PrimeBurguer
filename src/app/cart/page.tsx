@@ -5,6 +5,9 @@ import { useRouter } from "next/navigation"
 import { CartComponent } from "@/features/cart/components/CartComponent"
 import { useCartStore } from "@/features/cart/store/useCartStore"
 
+//Checkout
+import { handleCheckOut } from "@/features/cart/service/CheckOutService"
+
 export default function Cart() {
     const router = useRouter()
     const { totalPrice } = useCartStore()
@@ -21,7 +24,7 @@ export default function Cart() {
                 </div>
             </nav>
 
-            <main className="px-3 py-3">
+            <main className="px-3 py-3 pb-40">
                 <CartComponent />
             </main>
 
@@ -35,7 +38,8 @@ export default function Cart() {
                     <button 
                        className="
                           w-full sm:w-2xs bg-red-600 text-white py-4 rounded-xl mt-6 font-bold text-lg
-                           hover:bg-red-700 transition-all">
+                           hover:bg-red-700 transition-all"
+                        onClick={handleCheckOut}>
                         Finalizar Pedido
                     </button>
                 </div>
