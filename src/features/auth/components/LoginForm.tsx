@@ -24,7 +24,7 @@ export default function LoginForm() {
     const onSubmit = async (data: FormData) => {
         try {
             await loginService(data)
-            router.push("/home")
+            router.replace("/home")
         } catch (error) {
             console.log("Erro: ", error)
             alert("E-mail ou senha incorretos. Tente novamente!")

@@ -1,7 +1,6 @@
-export interface RegisterFormData {
+export interface ProfileUpdate {
     name: string,
     email: string,
-    password: string,
     address: string,
     referenceAddress: string,
     phoneNumber: string,
