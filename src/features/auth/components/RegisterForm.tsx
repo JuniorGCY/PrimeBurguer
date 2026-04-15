@@ -15,9 +15,16 @@ const schema = z.object({
     referenceAddress: z.string().min(5, "Complemento muito curto"),
     phoneNumber: z
       .string()
-      .min(10, "Telefone muito curto")
-      .max(15, "Telefone muito longo")
-      .regex(/^[0-9\s]+$/, "Use apenas números e espaços"),
+        .transform((val) => val.replace(/\D/g, "")) 
+        .refine((val) => val.length >= 10 && val.length <= 11, {
+            message: "Telefone deve ter 10 ou 11 dígitos numéricos",
+        }),
+    cpf: z
+        .string()
+        .transform((val) => val.replace(/\D/g, ""))
+        .refine((val) => val.length === 11, {
+            message: "O CPF deve ter exatamente 11 dígitos",
+        }),
 })
 
 type FormData = z.infer<typeof schema>
@@ -42,7 +49,7 @@ export default function RegisterForm() {
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-2 my-3">
                 <label 
-                   className="text-black text-2xl"
+                   className="text-black text-lg"
                    htmlFor="name"
                 >
                     Nome
@@ -61,7 +68,7 @@ export default function RegisterForm() {
 
             <div className="flex flex-col gap-2 my-3">
                 <label
-                   className="text-black text-2xl"
+                   className="text-black text-lg"
                    htmlFor="email"
                 >
                     E-mail
@@ -80,7 +87,7 @@ export default function RegisterForm() {
 
             <div className="flex flex-col gap-2 my-3">
                 <label
-                   className="text-black text-2xl"
+                   className="text-black text-lg"
                    htmlFor="password"
                 >
                     Senha
@@ -98,7 +105,7 @@ export default function RegisterForm() {
 
             <div className="flex flex-col gap-2 my-3">
                 <label
-                   className="text-black text-2xl"
+                   className="text-black text-lg"
                    htmlFor="address"
                 >
                     Endereço
@@ -117,7 +124,7 @@ export default function RegisterForm() {
 
             <div className="flex flex-col gap-2 my-3">
                 <label
-                   className="text-black text-2xl"
+                   className="text-black text-lg"
                    htmlFor="reference"
                 >
                     Referência
@@ -135,7 +142,7 @@ export default function RegisterForm() {
 
             <div className="flex flex-col gap-2 my-3">
                 <label
-                   className="text-black text-2xl"
+                   className="text-black text-lg"
                    htmlFor="phoneNumber"
                 >
                     Número de telefone
@@ -144,12 +151,31 @@ export default function RegisterForm() {
                    className="
                     w-full px-4 py-3 border border-black rounded-md placeholder:text-gray-700 text-black caret-gray-700"
                     {...register("phoneNumber")}
-                   placeholder="Ex: 63 99999 9999 ou 63999999999"
+                   placeholder="Ex: 63 999999999"
                    required
                    type="text"
                    inputMode="numeric"
                 />
                 {errors.phoneNumber && <span className="text-red-600">{errors.phoneNumber.message}</span>}
+            </div>
+
+            <div className="flex flex-col gap-2 my-3">
+                <label
+                   className="text-black text-lg"
+                   htmlFor="cpf"
+                >
+                    CPF
+                </label>
+                <input 
+                   className="
+                    w-full px-4 py-3 border border-black rounded-md placeholder:text-gray-700 text-black caret-gray-700"
+                    {...register("cpf")}
+                   placeholder="Ex: 123.456.789-00 ou 12345678900"
+                   required
+                   type="text"
+                   inputMode="numeric"
+                />
+                {errors.cpf && <span className="text-red-600">{errors.cpf.message}</span>}
             </div>
 
             <div className="mt-6">

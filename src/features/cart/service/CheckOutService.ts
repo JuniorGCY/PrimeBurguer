@@ -36,9 +36,11 @@ export const handleCheckOut = async () => {
     console.log("Cellphone: ", userData?.phoneNumber)
     console.log("taxId: ", userData?.cpf)
 
-    const { url } = await res.json()
+    const data = await res.json()
 
-    if (url) {
-        window.location.href = url
+    if (data.url) {
+        window.location.replace(data.url)
+    } else {
+        alert("Erro ao gerar pagamento: " + data.error);
     } 
 }

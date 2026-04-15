@@ -4,5 +4,6 @@ export interface RegisterFormData {
     password: string,
     address: string,
     referenceAddress: string,
-    phoneNumber: string
+    phoneNumber: string,
+    cpf: string
 }

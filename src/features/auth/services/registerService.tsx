@@ -18,6 +18,7 @@ export const registerUser = async (data: RegisterFormData) => {
         address: data.address,
         reference: data.referenceAddress,
         phoneNumber: data.phoneNumber,
+        cpf: data.cpf,
         createdAt: serverTimestamp()
     })
 }

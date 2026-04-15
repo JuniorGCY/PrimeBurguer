@@ -14,9 +14,6 @@ export async function POST(request: Request) {
     const cleanTaxId = customer.taxId ? customer.taxId.replace(/\D/g, '') : "09162218140"; 
 
     try {
-        console.log("🍔 1. Iniciando chamada para o AbacatePay...");
-        console.log("📦 Produtos enviados:", products);
-
         const response = await fetch('https://api.abacatepay.com/v1/billing/create', {
             method: 'POST',
             headers: {
@@ -27,8 +24,8 @@ export async function POST(request: Request) {
                 frequency: "ONE_TIME",
                 methods: ["PIX"],
                 products: products,
-                returnUrl: `${process.env.NEXT_PUBLIC_URL}/order-success`,
-                completionUrl: `${process.env.NEXT_PUBLIC_URL}/cart`,
+                returnUrl: `${process.env.NEXT_PUBLIC_URL}/cart`,
+                completionUrl: `${process.env.NEXT_PUBLIC_URL}/order-success`,
                 customer: {
                     name: customer.name,
                     email: customer.email,
@@ -40,22 +37,14 @@ export async function POST(request: Request) {
 
         const data = await response.json()
 
-        // 🚨 O X-9: Aqui ele vai dedurar o que o banco respondeu!
-        console.log("🏦 2. Resposta do AbacatePay:", data);
-         console.log("Usuario: ", customer.name)
-        console.log("Email: ", customer.email)
-        console.log("Cellphone: ", customer.cellphone)
-        console.log("taxId: ", customer.taxId)
-
-        // Se o banco negou a requisição (status diferente de 200)
         if (!response.ok) {
-             console.error("❌ 3. O AbacatePay recusou os dados!");
+             console.error(" 3. O AbacatePay recusou os dados!");
              return NextResponse.json({ error: data }, { status: response.status });
         }
 
         return NextResponse.json({ url: data.data.url })
     } catch (error) {
-        console.error("🚨 4. Erro fatal no servidor:", error);
+        console.error("Erro fatal no servidor:", error);
         return NextResponse.json({ error: "Erro ao criar checkout"}, {status: 500})
     }
 }
