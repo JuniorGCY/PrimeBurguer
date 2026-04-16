@@ -1,31 +1,91 @@
-🍔 PrimeBurguer - Delivery App
-A PrimeBurguer é um site para vendas de hambúrgueres artesanais, desenvolvida com foco em performance, segurança e uma experiência de usuário fluida. O projeto utiliza o poder do Next.js 15 (App Router) integrado ao ecossistema Firebase para autenticação e banco de dados em tempo real.
+PrimeBurguer — Delivery App
 
-Problema: Meu amigo pendente apenas do WhastApp para se comunicar com os clientes e storys para promover seus lanches e quaisquer mudanças. Além de claro, ficar preso na visualização e comprovantes de pix.
+Status: Em Desenvolvimento - Fase 2 (2/3)
 
-Objetivo: Resolvi não só, dar um site e um checkout de pagamento para ele, como também, aproveitar para praticar React com Next para meu desenvolvimento.
+**link do site**: https://prime-burguer-ten.vercel.app/
 
-Atualmente o site está em desenvolvimento e tem apenas o sistema de Registro e login feito, logo mais, terá uma prévia para ser acessada.
+Este projeto nasceu de uma necessidade real: um amigo que gerenciava todo o seu negócio via WhatsApp e Stories do Instagram. A PrimeBurguer é um site simples de delivery de hambúrgueres artesanais, o foco principal é automatizar o fluxo que hoje depende exclusivamente de interações manuais, proporcionando uma experiência fluida tanto para o cliente quanto para o administrador, ganhar mais profissionalismo como vendedor de lanches e espaço no mercado local.
 
-Tecnologias Utilizadas
-Framework: Next.js (App Router)
-Linguagem: TypeScript
-Estilização: Tailwind CSS
-Backend & Auth: Firebase (Auth & Firestore)
-Validação de Dados: Zod & React Hook Form
-Navegação: Next Navigation
-
-Estrutura do Projeto
-O projeto segue o padrão de Feature-Based Architecture, organizando o código por funcionalidades para facilitar a manutenção:
-
-src/app: Roteamento e Layouts.
-src/features: Lógica de negócio, componentes e serviços específicos (ex: Auth).
-src/libs: Configurações de instâncias externas (Firebase).
-src/components: Componentes globais e reutilizáveis (UI).
+## Contexto e Desafio
 
 
+**O Problema**: Dependência total de atendimento manual pelo WhatsApp, golpes com falsos pagamentos, poluição visual com prints de comprovantes de PIX e falta de um catálogo dinâmico.
+
+**A Solução**: Um site completo para o cliente, checkout integrado e, futuramente, um painel administrativo para controle de pedidos.
+
+**O Objetivo Pessoal**: Praticar a stack moderna do Next.js 15 e a integração com serviços de Backend-as-a-Service (Firebase).
+
+## Tecnologias & Ferramentas
+**Frontend**: Next.js 15 (App Router), React, TypeScript.
+
+**Estilização**: Tailwind CSS.
+
+**Gerenciamento de Estado**: Zustand.
+
+**Formulários & Validação**: React Hook Form + Zod.
+
+**Backend & Banco de Dados**: Firebase (Authentication e Firestore).
+
+**Pagamentos**: Integração via API com AbacatePay (PIX dinâmico com webhooks/callbacks).
+
+
+
+
+## Arquitetura
+Para garantir que o código seja limpo e fácil de manter, utilizei a Feature-Based Architecture:
+
+**src/app**: Gerenciamento de rotas e layouts globais.
+
+**src/features**: Lógica isolada por domínio (ex: /auth contém seus próprios hooks, componentes e serviços).
+
+**src/libs**: Centralização de instâncias externas (Firebase Config).
+
+**src/components**: Componentes de UI atômicos e reutilizáveis.
+
+## Screenshots (Módulo Auth)
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/207bd470-e68d-4780-94bf-453f8f0279aa
-  " alt="Login PrimeBurguer" width="350px" style="margin: 10px;"/>
-  <img src="https://github.com/user-attachments/assets/5957a032-17e9-4baf-8fc7-915f96e0cf61" alt="Cadastro PrimeBurguer" width="350px" style="margin: 10px;"/>
+<img src="https://github.com/user-attachments/assets/207bd470-e68d-4780-94bf-453f8f0279aa" alt="Login PrimeBurguer" width="400px" style="border-radius: 10px; margin: 10px;"/>
+<img src="https://github.com/user-attachments/assets/5957a032-17e9-4baf-8fc7-915f96e0cf61" alt="Cadastro PrimeBurguer" width="400px" style="border-radius: 10px; margin: 10px;"/>
 </div>
+
+## Funcionalidades Principais (Até o momento)
+[x] Autenticação de usuários (Login/Cadastro com Firebase).
+
+[x] Catálogo de produtos dinâmico.
+
+[x] Carrinho de compras persistente (Zustand).
+
+[x] Checkout transparente com geração de código PIX (AbacatePay).
+
+[x] Atualização de perfil do usuário.
+
+## Atualmente na Fase 2
+[ ] Desenvolvimento da Tela Inicial/Boas-vindas.
+
+[ ] Dashboard administrativo (Protegido por Role "admin") para o dono da hamburgueria.
+
+[ ] Refatorar e componentizar.
+
+
+
+
+## Como rodar o projeto localmente
+
+# 1. Clone o repositório
+git clone https://github.com/JuniorGCY/PrimeBurguer.git
+
+# 2. Instale as dependências
+npm install
+
+# 3. Configure as variáveis de ambiente
+**Crie um arquivo .env.local na raiz e adicione suas chaves do Firebase e AbacatePay**
+
+NEXT_PUBLIC_URL=http://localhost:3000
+
+ABACATE_PAY_KEY=sua_chave_aqui
+
+
+**... adicione as chaves do Firebase ...**
+
+# 4. Rode o servidor de desenvolvimento
+npm run dev
