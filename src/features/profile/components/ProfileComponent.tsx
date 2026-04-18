@@ -1,40 +1,30 @@
 "use client"
 
+//React Hook Form
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from 'zod'
+
+//Service e Hooks
 import { UpdateService } from "../service/UpdateService"
+import { useProfileHook} from "../hooks/useProfileHook"
 
-import { useProfileHook } from "../hooks/useProfileHook"
-
-const schema = z.object({
-    name: z.string().min(3, "Nome muito curto"),
-    email: z.email("Email inválido"),
-    address: z.string().min(5, "Endereço muito curto"),
-    referenceAddress: z.string().min(5, "Complemento muito curto"),
-    phoneNumber: z
-          .string()
-          .min(10, "Telefone muito curto")
-          .max(15, "Telefone muito longo")
-          .regex(/^[0-9\s]+$/, "Use apenas números e espaços"),
-    cpf: z.string().min(10, "CPF inválido!"),
-})
-
-type FormData = z.infer<typeof schema>
+//tipagem
+import { ProfileUpdate,schema} from "../types/ProfileUpdate"
 
 export default function ProfileComponent() {
-    const {register, handleSubmit, reset, formState: { errors } } = useForm<FormData>({
+    const {register, handleSubmit, reset, formState: { errors } } = useForm<ProfileUpdate>({
         resolver: zodResolver(schema)
     })
 
     const {isLoading} = useProfileHook(reset)
 
-    const onSubmit = async (data: FormData) => {
-        try {
-            await UpdateService(data)
-            console.log("Sucesso")
-        } catch (error) {
-            console.log("vish", error)
+    const onSubmit = async (data: ProfileUpdate) => {
+        const result = await UpdateService(data)
+
+        if (result?.success) {
+            alert("Sucesso!")
+        } else {
+            alert("Sucesso!")
         }
     }
 
@@ -103,10 +93,11 @@ export default function ProfileComponent() {
             <div>
                 <label htmlFor="cpf" className="text-black text-lg">CPF:</label>
                 <input
-                   className="w-full px-4 py-3 border border-black rounded-md placeholder:text-gray-700 text-black caret-gray-700"
+                   className="w-full px-4 py-3 border border-gray-400 rounded-md bg-gray-200 text-gray-600 cursor-not-allowed outline-none"
                    placeholder="(Apenas números)"
                    type="text"
                    inputMode="numeric"
+                   readOnly
                    {...register("cpf")}
                 />
                 {errors.cpf && <span className="text-red-600">{errors.cpf.message}</span>}

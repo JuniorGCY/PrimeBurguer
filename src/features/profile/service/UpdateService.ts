@@ -1,8 +1,14 @@
 import { auth,db } from "@/libs/FirebaseConnection"
 import { updateDoc, doc,} from "firebase/firestore"
-import { ProfileUpdate } from "../types/ProfileUpdate"
+import { ProfileUpdate,schema} from "../types/ProfileUpdate"
 
 export const UpdateService = async (data: ProfileUpdate) => {
+    const result = schema.safeParse(data)
+
+    if (!result.success) {
+        return {success: false, error: "Dados inválidos"}
+    }
+
     const user = auth.currentUser
 
     if (!user) throw new Error("Usuário não autenticado");
@@ -14,7 +20,6 @@ export const UpdateService = async (data: ProfileUpdate) => {
         email: data.email,
         address: data.address,
         referenceAddress: data.referenceAddress,
-        phoneNumber: data.phoneNumber,
-        cpf: data.cpf
+        phoneNumber: data.phoneNumber
     })
 }
