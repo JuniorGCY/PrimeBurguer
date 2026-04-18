@@ -3,45 +3,26 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerUser } from "../services/registerService";
-import * as z from 'zod'
+import { RegisterFormData, schema } from "../types/RegisterFormData";
+
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const schema = z.object({
-    name: z.string().min(3, "Nome muito curto"),
-    email: z.email("Email inválido"),
-    password: z.string().min(6, "Senha muito curta!"),
-    address: z.string().min(5, "Endereço muito curto"),
-    referenceAddress: z.string().min(5, "Complemento muito curto"),
-    phoneNumber: z
-      .string()
-        .transform((val) => val.replace(/\D/g, "")) 
-        .refine((val) => val.length >= 10 && val.length <= 11, {
-            message: "Telefone deve ter 10 ou 11 dígitos numéricos",
-        }),
-    cpf: z
-        .string()
-        .transform((val) => val.replace(/\D/g, ""))
-        .refine((val) => val.length === 11, {
-            message: "O CPF deve ter exatamente 11 dígitos",
-        }),
-})
-
-type FormData = z.infer<typeof schema>
-
 export default function RegisterForm() {
-    const {register, handleSubmit, formState: { errors } } = useForm<FormData>({
+    const {register, handleSubmit, formState: { errors } } = useForm<RegisterFormData>({
         resolver: zodResolver(schema)
     })
+    
     const router = useRouter()
 
-    const onSubmit = async (data: FormData) => {
-        try {
-            await registerUser(data)
-            console.log("Usuario cadastrado")
+    const onSubmit = async (data: RegisterFormData) => {
+        const result = await registerUser(data)
+
+        if (result.success) {
+            alert("sucesso")
             router.push("/login")
-        } catch (error) {
-            console.log("Erro", data)
+        } else {
+            alert("Algo deu errado")
         }
     }
 

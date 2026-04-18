@@ -2,33 +2,27 @@
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from 'zod'
+import { LoginFormData, schema } from "../types/LoginFormData"
 import { loginService } from "../services/loginService"
+
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 
-const schema = z.object({
-    email: z.email("E-mail inválido"),
-    password: z.string().min(6, "senha muito curta!")
-})
-
-type FormData = z.infer<typeof schema>
-
 export default function LoginForm() {
-    const {register, handleSubmit, formState: { errors } } = useForm<FormData>({
+    const {register, handleSubmit, formState: { errors } } = useForm<LoginFormData>({
         resolver: zodResolver(schema)
     })
 
     const router = useRouter()
 
-    const onSubmit = async (data: FormData) => {
-        try {
-            await loginService(data)
+    const onSubmit = async (data: LoginFormData) => {
+        const result = await loginService(data)
+
+        if (result.sucess) {
+            alert("sucesso")
             router.replace("/home")
-        } catch (error) {
-            console.log("Erro: ", error)
-            alert("E-mail ou senha incorretos. Tente novamente!")
-            throw error
+        } else {
+            alert("Algo deu errado")
         }
     }
 

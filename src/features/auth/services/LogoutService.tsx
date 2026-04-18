@@ -1,3 +1,5 @@
+"use server"
+
 import { auth } from "@/libs/FirebaseConnection";
 import { signOut } from "firebase/auth";
 
