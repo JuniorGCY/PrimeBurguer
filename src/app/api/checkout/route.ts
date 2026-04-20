@@ -1,19 +1,33 @@
 import { NextResponse } from "next/server";
 
+import { db } from "@/libs/FirebaseConnection"; 
+import { doc, getDoc } from "firebase/firestore";
+
 export async function POST(request: Request) {
-    const { cartItems, customer} = await request.json()
-
-    const products = cartItems.map((item: any) => ({
-        externalId: item.id,
-        name: item.name,
-        quantity: item.quantity,
-        price: Math.round(item.price * 100)
-    }))
-
-    const cleanCellphone = customer.cellphone ? customer.cellphone.replace(/\D/g, '') : "11999999999";
-    const cleanTaxId = customer.taxId ? customer.taxId.replace(/\D/g, '') : "09162218140"; 
+    const { cartItems, customer } = await request.json()
 
     try {
+        const products = await Promise.all(cartItems.map(async (item: any) => {
+            const productRef = doc(db, "lanches", item.id); 
+            const productSnap = await getDoc(productRef);
+
+            if (!productSnap.exists()) {
+                throw new Error(`Tentativa de compra de produto inválido: ${item.id}`);
+            }
+
+            const realProduct = productSnap.data();
+
+            return {
+                externalId: item.id,
+                name: realProduct.name,
+                quantity: item.quantity,
+                price: Math.round(realProduct.price * 100)
+            }
+        }));
+
+        const cleanCellphone = customer.cellphone ? customer.cellphone.replace(/\D/g, '') : "11999999999";
+        const cleanTaxId = customer.taxId ? customer.taxId.replace(/\D/g, '') : "09162218140"; 
+
         const response = await fetch('https://api.abacatepay.com/v1/billing/create', {
             method: 'POST',
             headers: {

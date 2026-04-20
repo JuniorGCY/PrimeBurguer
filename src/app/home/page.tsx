@@ -25,9 +25,9 @@ export default function Home() {
     const handleSignOut = async () => {
         try {
             await LogoutService()
-            router.push("/login")
+            router.replace("/login")
         } catch (error) {
-            console.log("Vish")
+            alert("algo deu errado")
         }
     }
 
