@@ -30,14 +30,14 @@ export default function LoginForm() {
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="my-2">
                 <label 
-                className="text-black text-lg"
+                className="text-white text-lg"
                 htmlFor="email"
                 >
                     E-mail:
                 </label>
                 <input
                 className="
-                    w-full px-4 py-2 rounded-md border border-black placeholder:text-gray-700 text-black caret-gray-700"
+                    w-full px-4 py-2 rounded-md border border-white rounded-md placeholder:text-gray-100 text-white caret-gray-700"
                 {...register("email")}
                 placeholder="seu@email.com"
                 required
@@ -48,14 +48,14 @@ export default function LoginForm() {
 
             <div className="my-4">
                 <label
-                className="text-black text-lg"
+                className="text-white text-lg"
                 htmlFor="password"
                 >
                     Senha:
                 </label>
                 <input 
                 className="
-                    w-full px-4 py-2 rounded-md border border-black placeholder:text-gray-700 text-black caret-gray-700"
+                    w-full px-4 py-2 rounded-md border border-white rounded-md placeholder:text-gray-100 text-white caret-gray-700"
                 {...register("password")}
                 placeholder="Sua senha criada no Cadastro"
                 required
@@ -74,8 +74,8 @@ export default function LoginForm() {
             </div>
 
             <div className="flex flex-row mt-4">
-                <h1 className="text-black">Não tem uma conta?</h1>
-                <h1 className="text-red-600 mx-2"><Link href="/register">Crie uma agora</Link></h1>
+                <h1 className="text-white font-bold">Não tem uma conta?</h1>
+                <h1 className="text-red-600 mx-2 font-bold"><Link href="/register">Crie uma agora</Link></h1>
             </div>
         </form>
     )

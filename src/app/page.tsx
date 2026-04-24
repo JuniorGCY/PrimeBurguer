@@ -1,8 +1,3 @@
-import Link from "next/link"
-import Image from "next/image"
-
-import lancheimg from '@/assets/exemplo.jpeg'
-
 //Componentes
 import { NavBar } from "@/components/NavBar"
 import { Hero } from "@/components/Hero"
@@ -13,14 +8,22 @@ import { FooterComponent } from "@/components/FooterComponent"
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen w-full bg-[#121212] font-sans antialiased">
 
-      <NavBar />
-      <Hero />
-      <Cardapio />
-      <Motivos />
-      <Contato />
-      <FooterComponent />
+      <header className="bg-[#1e1e1e] py-3">
+        <NavBar />
+        <Hero />
+      </header>
+
+      <main>
+        <Cardapio />
+        <Motivos />
+      </main>
+
+      <footer>
+        <Contato />
+        <FooterComponent />
+      </footer>
     </div>
   )
 }
