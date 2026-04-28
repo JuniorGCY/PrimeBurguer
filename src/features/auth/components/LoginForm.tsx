@@ -30,14 +30,14 @@ export default function LoginForm() {
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="my-2">
                 <label 
-                className="text-white text-lg"
+                className="text-white text-sm"
                 htmlFor="email"
                 >
                     E-mail:
                 </label>
                 <input
                 className="
-                    w-full px-4 py-2 rounded-md border border-white rounded-md placeholder:text-gray-100 text-white caret-gray-700"
+                    w-full px-4 py-3 border border-zinc-700 rounded-md placeholder:text-gray-100 text-white text-sm caret-gray-700 focus:border-red-600 focus:ring-1 focus:ring-red-600"
                 {...register("email")}
                 placeholder="seu@email.com"
                 required
@@ -48,14 +48,14 @@ export default function LoginForm() {
 
             <div className="my-4">
                 <label
-                className="text-white text-lg"
+                className="text-white text-sm"
                 htmlFor="password"
                 >
                     Senha:
                 </label>
                 <input 
                 className="
-                    w-full px-4 py-2 rounded-md border border-white rounded-md placeholder:text-gray-100 text-white caret-gray-700"
+                    w-full px-4 py-3 border border-zinc-700 rounded-md placeholder:text-gray-100 text-white text-sm caret-gray-700 focus:border-red-600 focus:ring-1 focus:ring-red-600"
                 {...register("password")}
                 placeholder="Sua senha criada no Cadastro"
                 required
@@ -66,7 +66,7 @@ export default function LoginForm() {
 
             <div>
                 <button
-                    className="w-full bg-red-600 border px-4 py-3  rounded-md mt-5  text-white font-bold"
+                    className="w-full bg-red-600 border border-zinc-700  py-3  rounded-md mt-5  text-white text-sm font-bold"
                     type="submit"
                 >
                     Entrar
@@ -74,8 +74,8 @@ export default function LoginForm() {
             </div>
 
             <div className="flex flex-row mt-4">
-                <h1 className="text-white font-bold">Não tem uma conta?</h1>
-                <h1 className="text-red-600 mx-2 font-bold"><Link href="/register">Crie uma agora</Link></h1>
+                <h1 className="text-white text-sm font-bold">Não tem uma conta?</h1>
+                <h1 className="text-red-600 text-sm mx-2 font-bold"><Link href="/register">Crie uma agora</Link></h1>
             </div>
         </form>
     )

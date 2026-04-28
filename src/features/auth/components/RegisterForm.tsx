@@ -28,16 +28,17 @@ export default function RegisterForm() {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-col">
             <div className="flex flex-col gap-2 my-3">
                 <label 
-                   className="text-white text-lg"
+                   className="text-white text-sm"
                    htmlFor="name"
                 >
                     Nome
                 </label>
                 <input 
                    className="
-                    w-full px-4 py-3 border border-white rounded-md placeholder:text-gray-100 text-white caret-gray-700"
+                    w-full px-4 py-3 border border-zinc-700 rounded-md placeholder:text-gray-100 text-white text-sm caret-gray-700 focus:border-red-600 focus:ring-1 focus:ring-red-600"
                    {...register("name")}
                    placeholder="Digite seu Nome"
                    required
@@ -49,14 +50,14 @@ export default function RegisterForm() {
 
             <div className="flex flex-col gap-2 my-3">
                 <label
-                   className="text-white text-lg"
+                   className="text-white text-sm"
                    htmlFor="email"
                 >
                     E-mail
                 </label>
                 <input 
                    className="
-                    w-full px-4 py-3 border border-white rounded-md placeholder:text-gray-100 text-white caret-gray-700"
+                    w-full px-4 py-3 border border-zinc-700 rounded-md placeholder:text-gray-100 text-white text-sm caret-gray-700 focus:border-red-600 focus:ring-1 focus:ring-red-600"
                     {...register("email")}
                    placeholder="seu@email.com"
                    required
@@ -68,14 +69,14 @@ export default function RegisterForm() {
 
             <div className="flex flex-col gap-2 my-3">
                 <label
-                   className="text-white text-lg"
+                   className="text-white text-sm"
                    htmlFor="password"
                 >
                     Senha
                 </label>
                 <input 
                    className="
-                    w-full px-4 py-3 border border-white rounded-md placeholder:text-gray-100 text-white caret-gray-700"
+                    w-full px-4 py-3 border border-zinc-700 rounded-md placeholder:text-gray-100 text-white text-sm caret-gray-700 focus:border-red-600 focus:ring-1 focus:ring-red-600"
                     {...register("password")}
                    placeholder="Uma senha memorável"
                    required
@@ -86,14 +87,14 @@ export default function RegisterForm() {
 
             <div className="flex flex-col gap-2 my-3">
                 <label
-                   className="text-white text-lg"
+                   className="text-white text-sm"
                    htmlFor="address"
                 >
                     Endereço
                 </label>
                 <input 
                    className="
-                    w-full px-4 py-3 border border-white rounded-md placeholder:text-gray-100 text-white caret-gray-700"
+                    w-full px-4 py-3 border border-zinc-700 rounded-md placeholder:text-gray-100 text-white text-sm caret-gray-700 focus:border-red-600 focus:ring-1 focus:ring-red-600"
                     {...register("address")}
                    placeholder="Digite seu endereço completo"
                    required
@@ -105,14 +106,14 @@ export default function RegisterForm() {
 
             <div className="flex flex-col gap-2 my-3">
                 <label
-                   className="text-white text-lg"
+                   className="text-white text-sm"
                    htmlFor="reference"
                 >
                     Referência
                 </label>
                 <input 
                    className="
-                    w-full px-4 py-3 border border-white rounded-md placeholder:text-gray-100 text-white caret-gray-700"
+                    w-full px-4 py-3 border border-zinc-700 rounded-md placeholder:text-gray-100 text-white text-sm caret-gray-700 focus:border-red-600 focus:ring-1 focus:ring-red-600"
                     {...register("referenceAddress")}
                    placeholder="Um ponto de referência"
                    required
@@ -123,14 +124,14 @@ export default function RegisterForm() {
 
             <div className="flex flex-col gap-2 my-3">
                 <label
-                   className="text-white text-lg"
+                   className="text-white text-sm"
                    htmlFor="phoneNumber"
                 >
                     Número de telefone
                 </label>
                 <input 
                    className="
-                    w-full px-4 py-3 border border-white rounded-md placeholder:text-gray-100 text-white caret-gray-700"
+                    w-full px-4 py-3 border border-zinc-700 rounded-md placeholder:text-gray-100 text-white text-sm caret-gray-700 focus:border-red-600 focus:ring-1 focus:ring-red-600"
                     {...register("phoneNumber")}
                    placeholder="Ex: 63 999999999"
                    required
@@ -142,14 +143,14 @@ export default function RegisterForm() {
 
             <div className="flex flex-col gap-2 my-3">
                 <label
-                   className="text-white text-lg"
+                   className="text-white text-sm"
                    htmlFor="cpf"
                 >
                     CPF
                 </label>
                 <input 
                    className="
-                    w-full px-4 py-3 border border-white rounded-md placeholder:text-gray-100 text-white caret-gray-700"
+                    w-full px-4 py-3 border border-zinc-700 rounded-md placeholder:text-gray-100 text-white text-sm caret-gray-700 focus:border-red-600 focus:ring-1 focus:ring-red-600"
                     {...register("cpf")}
                    placeholder="Ex: 123.456.789-00 ou 12345678900"
                    required
@@ -159,9 +160,9 @@ export default function RegisterForm() {
                 {errors.cpf && <span className="text-red-600">{errors.cpf.message}</span>}
             </div>
 
-            <div className="mt-6">
+            <div className="flex mt-6">
                 <button
-                   className="w-full px-4 py-3 bg-red-600 rounded-md  text-white font-bold"
+                   className="w-full px-3 py-3 bg-red-600 rounded-md  text-white font-bold text-sm"
                    type="submit"
                 >
                     Cadastrar
@@ -172,6 +173,7 @@ export default function RegisterForm() {
                 <h1 className="text-white text-sm">Já tem uma conta?</h1>
                 <h1 className="text-red-600 mx-2 text-sm font-bold"><Link href="/login">Clique aqui</Link></h1>
             </div>
+          </div>
         </form>
     )
 }
