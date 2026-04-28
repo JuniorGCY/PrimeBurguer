@@ -11,8 +11,8 @@ export const Cardapio = () =>  {
     return (
         <section id="cardapio" className="mt-10">
             <div className="text-center">
-                <h2 className="text-white font-bold text-2xl">Nossos lanches mais</h2>
-                <h2 className="text-red-600 font-bold text-2xl">vendidos</h2>
+                <h2 className="text-white font-bold text-2xl sm:text-3xl">Nossos lanches mais</h2>
+                <h2 className="text-red-600 font-bold text-2xl sm:text-3xl ">vendidos</h2>
             </div>
 
             <div className='grid grid-cols-1 gap-6 px-3 mt-5 mx-5 sm:grid-cols-3 lg:grid-cols-4'>

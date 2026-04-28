@@ -15,7 +15,7 @@ export const Contato = () => {
                 <h1 className="text-white font-bold text-2xl">Bateu a fome? <br></br>Chama a gente!</h1>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
+            <div className="grid grid-cols-1 gap-4 mt-3 sm:grid-cols-2 sm:mx-30">
                 {cards.map((item) => (
                     <div key={item.title} className="flex flex-row px-3 py-3 mx-3 gap-4  border rounded-2xl">
                         <div className="w-12 h-12 rounded-2xl bg-red-500 flex items-center justify-center mt-3">

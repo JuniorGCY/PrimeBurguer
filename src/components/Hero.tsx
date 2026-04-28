@@ -14,17 +14,20 @@ export const Hero = () => {
                 <p className="text-gray-100 text-sm">Sem enrolação, só sabor.</p>
             </div>
 
-            <div className="flex flex-row gap-4 sm:mx-5">
+            <div className="flex flex-row gap-4 items-center justify-center sm:mx-5">
                 <Link 
                    href="/register"
-                   className="w-full px-3 py-3 bg-red-600 text-white text-center text-sm font-bold rounded-2xl">
+                   className="w-full px-3 py-3 bg-red-600 text-white text-center text-sm font-bold rounded-2xl lg:w-100
+                    transition-transform duration-300 ease-in-out hover:scale-90">
                    Faça seu pedido
                 </Link>
 
-                <button
-                   className="w-full px-3 py-3 bg-black text-white text-sm font-bold rounded-2xl opacity-90">
-                    Ver Cardápio
-                </button>
+                <Link
+                   href="/"
+                   className="w-full px-3 py-3 bg-black text-white text-center text-sm font-bold rounded-2xl lg:w-100
+                   transition-transform duration-300 ease-in-out hover:scale-90">
+                   Ver Cardápio
+                </Link>
             </div>
         </section>
     )

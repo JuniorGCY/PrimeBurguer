@@ -12,11 +12,11 @@ const reasons = [
 export const Motivos = () => {
     return (
         <section id="reasons" className="px-3 py-3 mt-10">
-            <h1 className="text-white font-bold text-2xl text-center">Por que a Prime</h1>
-            <h2 className="text-red-600 font-bold text-2xl text-center">Burguer ? </h2>
+            <h1 className="text-white font-bold text-2xl text-center sm:text-3xl">Por que a Prime</h1>
+            <h2 className="text-red-600 font-bold text-2xl text-center sm:text-3xl">Burguer ? </h2>
             
 
-            <div className="grid grid-cols-2 gap-4 mt-10">
+            <div className="grid grid-cols-2 gap-4 mt-10 lg:grid-cols-3 md:mx-10">
                 {reasons.map((item) => (
                     <div key={item.title} className="bg-[#1e1e1e] rounded-2xl px-3 py-3 items-start">
                         <div className="w-12 h-12 rounded-2xl bg-red-500 flex items-center justify-center mt-3">
