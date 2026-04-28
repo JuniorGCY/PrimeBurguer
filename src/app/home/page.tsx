@@ -31,6 +31,7 @@ export default function Home() {
         }
     }
 
+
     return (
         <div className="flex flex-col items-center min-h-screen">
             <nav className="w-full flex flex-row px-3 py-3 border-b border-[#ccc] items-center justify-between">

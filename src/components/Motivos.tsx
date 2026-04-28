@@ -1,0 +1,35 @@
+import { Hamburger, Beef, Droplet, GlassWater, Motorbike} from "lucide-react"
+
+const reasons = [
+    {icon: Hamburger, title: "PÃO BRIOCHE", description: "Macio, dourado e gostoso"},
+    {icon: Beef, title: "100g DE CARNE", description: "Carne suculenta, apenas aqui"},
+    {icon: Droplet, title: "MOLHO BARBECUE", description: "Receita da casa"},
+    {icon: Hamburger, title: "100% ARTESENAL", description: "Sem excesso de ultrapassados"},
+    {icon: GlassWater, title: "Suco & Vitaminas", description: "Naturais, da fruta direto pro copo"},
+    {icon: Motorbike, title: "DELIVERY", description: "Quentinho na sua casa."}
+]
+
+export const Motivos = () => {
+    return (
+        <section id="reasons" className="px-3 py-3 mt-10">
+            <h1 className="text-white font-bold text-2xl text-center sm:text-3xl">Por que a Prime</h1>
+            <h2 className="text-red-600 font-bold text-2xl text-center sm:text-3xl">Burguer ? </h2>
+            
+
+            <div className="grid grid-cols-2 gap-4 mt-10 lg:grid-cols-3 md:mx-10">
+                {reasons.map((item) => (
+                    <div key={item.title} className="bg-[#1e1e1e] rounded-2xl px-3 py-3 items-start">
+                        <div className="w-12 h-12 rounded-2xl bg-red-500 flex items-center justify-center mt-3">
+                            <item.icon className="w-6 h-6"/>
+                        </div>
+
+                        <div className="mt-3">
+                            <h2 className="text-white font-bold">{item.title}</h2>
+                            <p>{item.description}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+    )
+}
